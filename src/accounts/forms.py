@@ -5,7 +5,7 @@ from django.contrib.auth.hashers import check_password
 User = get_user_model()
 
 
-class UserLoginForms(forms.Form):
+class UserLoginForm(forms.Form):
     email = forms.CharField(widget=forms.EmailInput(attrs={'class': 'form-control'}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
 
@@ -22,4 +22,4 @@ class UserLoginForms(forms.Form):
             user = authenticate(email=email, password=password)
             if not user:
                 raise forms.ValidationError('Account is deactivate')
-        return super(UserLoginForms, self).clean(*args, **kwargs)
+        return super(UserLoginForm, self).clean(*args, **kwargs)
